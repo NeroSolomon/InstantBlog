@@ -3,6 +3,10 @@ const express = require('express');
 const app = express();
 const router = require('./tool/router.js');
 
+/*global
+  __dirname
+*/
+
 // 设置模板引擎
 app.set('view engine', 'ejs');
 

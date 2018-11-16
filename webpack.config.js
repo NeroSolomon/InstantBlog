@@ -7,13 +7,47 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /*global
   __dirname
 */ 
+const pages = [
+  {
+    name: 'index'
+  }
+];
+
+const entry = {
+  'bootstrap/js/bootstrap': './src/global/bootstrap/js/bootstrap.js',
+  'common/js/commom': './src/global/common/js/commom.js'
+};
+
+const buildEntry = (pages) => {
+  for (let i = 0; i < pages.length ; i++ ) {
+    entry[`${pages[i].name}/js/${pages[i].name}`] = `./src/global/${pages[i].name}/js/${pages[i].name}.js`;
+  }
+};
+buildEntry(pages);
+
+const htmlList = [];
+
+const buildHtml = (pages) => {
+  const chunks = ['bootstrap/js/bootstrap', 'common/js/commom'];
+  for (let i = 0; i < pages.length ; i++ ) {
+    chunks.push(`${pages[i].name}/js/${pages[i].name}`);
+
+    let html = new HtmlWebpackPlugin({
+      favicon: './src/global/common/image/favicon.ico',
+      title: 'Instant Blog',
+      template: `./src/views/${pages[i].name}.ejs`,
+      filename: path.resolve(__dirname, `dist/views/${pages[i].name}.ejs`),
+      inject: 'body',
+      chunks
+    });
+    htmlList.push(html);
+  }
+};
+buildHtml(pages);
+
 module.exports = {
   mode: 'development',
-  entry: {
-    'bootstrap/js/bootstrap': './src/global/bootstrap/js/bootstrap.js',
-    'common/js/commom': './src/global/common/js/commom.js',
-    'index/js/index': './src/global/index/js/index.js'
-  },
+  entry,
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist'
@@ -65,13 +99,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      favicon: './src/global/common/image/favicon.ico',
-      title: 'Instant Blog',
-      template: './src/views/index.ejs',
-      filename: path.resolve(__dirname, 'dist/views/index/index.ejs'),
-      inject: 'body'
-    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         // 处理 loader 输出路径
@@ -96,5 +123,6 @@ module.exports = {
           );
       }
     }),
+    ...htmlList
   ]
 };

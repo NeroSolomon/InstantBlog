@@ -1,0 +1,15 @@
+.hide-on-med-and-down {
+  display: none;
+
+  @media screen and (min-width: 992px) {
+    display: block;
+  }
+}
+
+.hide-on-min-and-down {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}

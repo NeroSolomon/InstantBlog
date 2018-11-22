@@ -10,6 +10,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pages = [
   {
     name: 'index'
+  },
+  {
+    name: 'register'
   }
 ];
 

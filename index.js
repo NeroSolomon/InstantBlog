@@ -19,6 +19,9 @@ app.use(express.static('./dist/global'));
 // 首页
 app.get('/', router.showIndex);
 
+// 注册页
+app.get('/register', router.showRegister);
+
 // 创建一个http服务
 const server = require('http').createServer(app);
 // const io = require('socket.io')(server);

@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const router = require('./tool/router.js');
+// const db = require('./tool/db.js');
 
 /*global
   __dirname

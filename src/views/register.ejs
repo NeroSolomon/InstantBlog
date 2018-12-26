@@ -20,7 +20,7 @@
   </header>
   <main>
     <div class="container m-register">
-      <form class="f-mt" action="/sign-up" method="post">
+      <form class="f-mt">
         <div class="form-group">
           <label for="userName">User Name</label>
           <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter user name">
@@ -41,8 +41,10 @@
           <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password">
           <span class="m-tips"></span>
         </div>
-        <button type="submit" class="btn btn-primary float-right f-mt" id="signUpBtn">Submit</button>
       </form>
+      <div class="text-center clearfix">
+        <button class="btn btn-primary f-mt" id="signUpBtn" style="width: 30%">Submit</button>
+      </div>
     </div>
     <!-- modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">

@@ -10,10 +10,10 @@ exports.showRegister = (req, res)=> {
 };
 
 exports.signUp = (req, res)=> {
-  db.insertOne({
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password
-  }, 'loginMes');
+  // db.insertOne({
+  //   userName: req.body.userName,
+  //   email: req.body.email,
+  //   password: req.body.password
+  // }, 'loginMes');
   res.send(200);
 };

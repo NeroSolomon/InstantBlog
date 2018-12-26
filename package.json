@@ -19,6 +19,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "7",
+    "body-parser": "^1.18.3",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "ejs": "^2.6.1",

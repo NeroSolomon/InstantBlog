@@ -20,7 +20,7 @@
   </header>
   <main>
     <div class="container m-register">
-      <form class="f-mt">
+      <form class="f-mt" action="/sign-up" method="post">
         <div class="form-group">
           <label for="userName">User Name</label>
           <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter user name">
@@ -28,20 +28,20 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
             <span class="m-tips"></span>
           </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
           <span class="m-tips"></span>
         </div>
         <div class="form-group">
           <label for="confirmPassword">Password</label>
-          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password">
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm password">
           <span class="m-tips"></span>
         </div>
-        <button type="submit" class="btn btn-primary float-right f-mt">Submit</button>
+        <button type="submit" class="btn btn-primary float-right f-mt" id="signUpBtn">Submit</button>
       </form>
     </div>
     <!-- modal -->
@@ -61,8 +61,8 @@
                 <input type="text" class="form-control" id="user-name">
               </div>
               <div class="form-group">
-                <label for="password" class="col-form-label">密码:</label>
-                <input type="password" class="form-control" id="password"></input>
+                <label for="loginPassword" class="col-form-label">密码:</label>
+                <input type="loginPassword" class="form-control" id="loginPassword"></input>
               </div>
             </form>
           </div>

@@ -30,8 +30,8 @@ buildEntry(pages);
 const htmlList = [];
 
 const buildHtml = (pages) => {
-  const chunks = ['common/js/commom'];
   for (let i = 0; i < pages.length ; i++ ) {
+    const chunks = ['common/js/commom'];
     chunks.push(`${pages[i].name}/js/${pages[i].name}`);
 
     let html = new HtmlWebpackPlugin({

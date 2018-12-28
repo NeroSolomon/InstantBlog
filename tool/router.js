@@ -15,5 +15,9 @@ exports.signUp = (req, res)=> {
   //   email: req.body.email,
   //   password: req.body.password
   // }, 'loginMes');
-  res.send(200);
+  res.send({
+    'code': 200,
+    'msg': 'ok',
+    'data': null
+  });
 };

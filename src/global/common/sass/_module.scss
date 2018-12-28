@@ -1,0 +1,19 @@
+.m-slogan {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.m-close-tag {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: url('../image/icon_close_big.png') no-repeat;
+  background-size: 14px 14px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.m-close-tag:hover {
+  background: url('../image/icon_close_hover_big.png') no-repeat;
+  background-size: 14px 14px;
+}

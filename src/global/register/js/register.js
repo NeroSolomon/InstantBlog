@@ -6,7 +6,6 @@ import '../sass/register.scss';
 
 $(document).ready(() => {
   $('#signUpBtn').click(() => {
-    console.log(123);
     $.post(
       '/sign-up',
       {

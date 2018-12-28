@@ -17,7 +17,6 @@ const pages = [
 ];
 
 const entry = {
-  'bootstrap/js/bootstrap': './src/global/bootstrap/js/bootstrap.js',
   'common/js/commom': './src/global/common/js/commom.js'
 };
 
@@ -31,7 +30,7 @@ buildEntry(pages);
 const htmlList = [];
 
 const buildHtml = (pages) => {
-  const chunks = ['bootstrap/js/bootstrap', 'common/js/commom'];
+  const chunks = ['common/js/commom'];
   for (let i = 0; i < pages.length ; i++ ) {
     chunks.push(`${pages[i].name}/js/${pages[i].name}`);
 
@@ -68,7 +67,6 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader'

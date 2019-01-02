@@ -31,7 +31,7 @@ $('#registerForm').bootstrapValidator({
           message: '请填写邮箱'
         },
         regexp: {
-          regexp: /^w+@[a-z0-9]+\.[a-z]{2,4}$/,
+          regexp: /^\w+@[a-z0-9]+\.[a-z]{2,4}$/,
           message: '请填写正确的邮箱格式'
         }
       }
@@ -55,7 +55,6 @@ $('#registerForm').bootstrapValidator({
 
 $(document).ready(() => {
   $('#signUpBtn').click(() => {
-    console.log(1);
     $('#registerForm').bootstrapValidator('validate');
     if ($('#registerForm').data('bootstrapValidator').isValid()) {
       $.post(
@@ -66,7 +65,11 @@ $(document).ready(() => {
           password: $('#password').val()
         },
         (res) => {
-          console.log(res);
+          const { code } = res;
+          if (code == 200) {
+            $('.alert-success').eq(0).css('display', 'block');
+            $('#signUpBtn').attr('disabled', 'true');
+          }
         }
       );
     }

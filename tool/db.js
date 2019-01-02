@@ -1,107 +1,100 @@
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/instantBlog';
 
-exports.insertOne = (obj, collectionName)=> {
+exports.insertOne = (obj, collectionName, callback)=> {
   if (!obj || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
-    dbase.collection(collectionName).insertOne(obj, (err)=> {
-      if (err) throw err;
-      console.log('success insert');
+    dbase.collection(collectionName).insertOne(obj, (err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.insertMany = (obj, collectionName)=> {
+exports.insertMany = (obj, collectionName, callback)=> {
   if (!obj || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
-    dbase.collection(collectionName).insertMany(obj, (err)=> {
-      if (err) throw err;
-      console.log('success insert');
+    dbase.collection(collectionName).insertMany(obj, (err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.find = (obj, collectionName, type = { type: 1}, limit = '', skip = '')=> {
+exports.find = (obj, collectionName, callback)=> {
   if (!obj || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
-    dbase.collection(collectionName).find(obj).sort(type).skip(skip).limit(limit).toArray((err)=> {
-      if (err) throw err;
-      console.log('success find');
+    dbase.collection(collectionName).find(obj).toArray((err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.updateOne = (obj, newValue, collectionName)=> {
+exports.updateOne = (obj, newValue, collectionName, callback)=> {
   if (!obj || !newValue || ! collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
     const updateObj = {$set: newValue};
-    dbase.collection(collectionName).updateOne(obj, updateObj, (err)=> {
-      if (err) throw err;
-      console.log('success update');
+    dbase.collection(collectionName).updateOne(obj, updateObj, (err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.updateMany = (obj, newValue, collectionName)=> {
+exports.updateMany = (obj, newValue, collectionName, callback)=> {
   if (!obj || !newValue || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
     const updateObj = {$set: newValue};
-    dbase.collection(collectionName).updateMany(obj, updateObj, (err)=> {
-      if (err) throw err;
-      console.log('success update');
+    dbase.collection(collectionName).updateMany(obj, updateObj, (err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.deleteOne = (obj, collectionName)=> {
+exports.deleteOne = (obj, collectionName, callback)=> {
   if (!obj || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
-    dbase.collection(collectionName).deleteOne(obj, (err)=> {
-      if (err) throw err;
-      console.log('success delete');
+    dbase.collection(collectionName).deleteOne(obj, (err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.deleteMany = (obj, collectionName)=> {
+exports.deleteMany = (obj, collectionName, callback)=> {
   if (!obj || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
-    dbase.collection(collectionName).deleteMany(obj, (err)=> {
-      if (err) throw err;
-      console.log('success delete');
+    dbase.collection(collectionName).deleteMany(obj, (err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.aggregate = (obj, collectionName)=> {
+exports.aggregate = (obj, collectionName, callback)=> {
   if (!obj || !collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
@@ -111,23 +104,21 @@ exports.aggregate = (obj, collectionName)=> {
       {
         $lookup: obj
       }
-    ]).toArray((err)=> {
-      if (err) throw err;
-      console.log('success aggregate');
+    ]).toArray((err, res)=> {
+      callback(err, res);
       db.close();
     });
   });
 };
 
-exports.drop = (collectionName)=> {
+exports.drop = (collectionName, callback)=> {
   if (!collectionName) return;
   MongoClient.connect(url, (err, db)=> {
     if (err) throw err;
     console.log('success connect');
     const dbase = db.db('instantBlog');
     dbase.collection(collectionName).drop((err, res)=> {
-      if (err) throw err;
-      if (res) console.log('success drop');
+      callback(err, res);
       db.close();
     });
   });

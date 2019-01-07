@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 const router = require('./tool/router.js');
@@ -16,6 +17,13 @@ app.set('views', (__dirname + '/dist/views').split(path.sep).join('/'));
 
 // 设置静态文件夹
 app.use(express.static('./dist/global'));
+
+// 使用express-session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // 使用body-parser中间件
 app.use(bodyParser.urlencoded({ extended: false }));

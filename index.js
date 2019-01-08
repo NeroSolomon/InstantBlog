@@ -32,6 +32,9 @@ app.use(bodyParser.json());
 // 首页
 app.get('/', router.showIndex);
 
+// 登录
+app.post('/login', router.doLogin);
+
 // 注册页
 app.get('/register', router.showRegister);
 

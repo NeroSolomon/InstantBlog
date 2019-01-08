@@ -1,15 +1,38 @@
 
 const db = require('./db.js');
 
-exports.showIndex = (req, res)=> {
+exports.showIndex = (req, res) => {
   res.render('index');
 };
 
-exports.showRegister = (req, res)=> {
+exports.doLogin = (req, res) => {
+  db.find({
+    userName: req.body.userName,
+    password: req.body.password
+  }, 'loginMes', (err, result) => {
+    if (err) throw err;
+
+    if (result.length) {
+      res.send({
+        'code': 200,
+        'msg': 'success',
+        'data': null
+      })
+    } else {
+      res.send({
+        'code': 403,
+        'msg': 'Have no this user',
+        'data': null
+      })
+    }
+  })
+}
+
+exports.showRegister = (req, res) => {
   res.render('register');
 };
 
-exports.signUp = (req, res)=> {
+exports.signUp = (req, res) => {
   db.find({
     userName: req.body.userName
   }, 'loginMes', (err, result) => {
